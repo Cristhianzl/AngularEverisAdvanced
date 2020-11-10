@@ -19,6 +19,16 @@
       "urlIMDb": "https://www.imdb.com/title/tt0120912",
       "genero": "Ação",
       "id": 2
+    },
+    {
+      "titulo": "IMDbrief ",
+      "urlFoto": "https://m.media-amazon.com/images/M/MV5BMjAzYjhkN2UtM2U2Ny00MDE3LWE0OGItNDc5NGZkNjE2NWI5XkEyXkFqcGdeQXVyNzY1ODU1OTk@._V1_UX182_CR0,0,182,268_AL_.jpg",
+      "dtLancamento": "2018-01-16T23:00:00.000Z",
+      "descricao": "IMDb presents the stories between the headlines in your quick-fire video update, the IMDbrief.",
+      "nota": 6.2,
+      "urlIMDb": "https://www.imdb.com/title/tt9122526/?ref_=hm_hp_cap_pri_2",
+      "genero": "Ficção Científica",
+      "id": 4
     }
   ]
 }

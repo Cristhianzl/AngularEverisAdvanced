@@ -12,6 +12,9 @@ import { TopoComponent } from './shared/components/topo/topo.component';
 import { RodapeComponent } from './shared/components/rodape/rodape.component';
 
 import { FilmesModule } from './filmes/filmes.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AlertaComponent } from './shared/components/alerta/alerta.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -19,6 +22,8 @@ import { FilmesModule } from './filmes/filmes.module';
     AppComponent,
     TopoComponent,
     RodapeComponent,
+    AlertaComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -26,8 +31,11 @@ import { FilmesModule } from './filmes/filmes.module';
     LayoutModule,
     MaterialModule,
     AppRoutingModule,
-    FilmesModule
+    HttpClientModule,
+    FilmesModule,
+    InfiniteScrollModule
   ],
+  entryComponents: [AlertaComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })
