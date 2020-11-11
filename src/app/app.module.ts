@@ -32,8 +32,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MaterialModule,
     AppRoutingModule,
     HttpClientModule,
-    FilmesModule,
-    InfiniteScrollModule
+    FilmesModule
   ],
   entryComponents: [AlertaComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
