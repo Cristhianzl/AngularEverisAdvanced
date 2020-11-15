@@ -2,6 +2,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FilmesService } from 'src/app/core/filmes.service';
 import { Filme } from 'src/app/shared/models/filme';
+import { ConfigParams } from 'src/app/shared/models/config-params';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'dio-listagem-filmes',
@@ -10,9 +12,12 @@ import { Filme } from 'src/app/shared/models/filme';
 })
 export class ListagemFilmesComponent implements OnInit {
 
+    readonly semFoto = 'https://www.termoparts.com.br/wp-content/uploads/2017/10/no-image.jpg';
+  config: ConfigParams = {
+    pagina: 0,
+    limite: 4
+  }
   filmes: Filme[] = [];
-  pagina = 0;
-  qtdPagina = 4;
   filtrosListagem: FormGroup;
   generos: Array<string>;
 
@@ -26,6 +31,17 @@ export class ListagemFilmesComponent implements OnInit {
         genero: ['']
       });
 
+      this.filtrosListagem.get('texto').valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((val:string) => {
+        this.config.pesquisa = val;
+        this.resetarConsulta();
+      });
+      this.filtrosListagem.get('genero').valueChanges.subscribe((val:string) => {
+        this.config.campo = {tipo: 'genero', valor: val};
+        this.resetarConsulta();
+      });
+
       this.generos = ['Ação', 'Romance', 'Aventura', 'Terror', 'Ficção Científica', 'Comédia', 'Drama'];
 
 
@@ -36,8 +52,14 @@ export class ListagemFilmesComponent implements OnInit {
     this.listarFilmes();
   }
   private listarFilmes() : void{
-    this.pagina++;
-    this.filmesService.listar(this.pagina, this.qtdPagina)
+    this.config.pagina++;
+    this.filmesService.listar(this.config)
     .subscribe((filmes: Filme[]) => this.filmes.push(...filmes));
+  }
+
+  private resetarConsulta(): void{
+    this.config.pagina = 0;
+    this.filmes = [];
+    this.listarFilmes();
   }
 }
